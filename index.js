@@ -1,7 +1,15 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const server = express();
 
+const { mongoURI } = require('./credentials'); //new syntax; handy but not necessary
+// const mongoURI = require('./credentials').mongoURI; //old style, still works
 const port = process.env.PORT || 8080;
+
+//connect to the database
+mongoose.connect(mongoURI, {
+  useMongoClient: true
+});
 
 //middleware imports
 const morgan = require('morgan');
