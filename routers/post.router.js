@@ -17,7 +17,13 @@ router.get('/posts/:postId', (req, res) => {
 });
 
 router.post('/posts', (req, res) => {
-	res.send('creating a new post');
+      const post = new Post(req.body);
+      post.save(function(err, post){
+     	if(err) return res.status(500).json({err: err});
+	return res.status(201).json({
+	    msg: 'Successfully created a new post'	
+	});
+      });
 });
 
 router.put('/posts/:postId', (req, res) => {
