@@ -6,7 +6,7 @@ const Post = require('../models/post.model');
 router.get('/posts', (req, res) => {
    Post.find({}, function(err, posts){
   	if(err) return res.status(500).json({err: err}); 
-	return res.status(500).json({
+	return res.status(200).json({
 	   posts: posts	
 	});
    });
@@ -32,7 +32,12 @@ router.post('/posts', (req, res) => {
 });
 
 router.put('/posts/:postId', (req, res) => {
-	res.send('updates on the post!');
+    Post.findOneAndUpdate({ _id: req.params.postId }, req.body, function(err, post){
+   	if(err) return res.status(500).json({ err: err });
+	return res.status(200).json({
+		msg: 'Successfully updated a post'	
+	});
+    });
 });
 
 router.delete('/posts/:postId', (req, res) => {
