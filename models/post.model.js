@@ -16,7 +16,8 @@ const postSchema = Schema({
    },
    user: {
   	required: true,
-	type: Schema.ObjectId
+	type: Schema.ObjectId,
+	ref: "User"
    }
 });
 
