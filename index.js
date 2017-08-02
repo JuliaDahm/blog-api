@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const server = express();
 
-const { mongoURI } = require('./credentials'); //new syntax; handy but not necessary
+// const { mongoURI } = require('./credentials'); //new syntax; handy but not necessary
+const mongoURI = process.env.MONGOURI || require('./credentials').mongoURI;
 // const mongoURI = require('./credentials').mongoURI; //old style, still works
 const port = process.env.PORT || 8080;
 
